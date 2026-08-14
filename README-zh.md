@@ -179,6 +179,23 @@ IdleBox 以现代 Rust 语言重新诠释了经典的 BusyBox 理念。项目名
 
 BusyBox 在嵌入式 Linux 领域服务了二十余年，而 IdleBox 将这种"多调用二进制"的范式带入 Rust 生态 —— 零依赖、约 360KB 的极致体积、以及赏心悦目的 ANSI 彩色终端输出。
 
+## 平台支持
+
+| 平台 | 状态 | 说明 |
+|------|------|------|
+| Linux | 完整支持 | 全部 36 个 Applet |
+| macOS | 完整支持 | 全部 36 个 Applet |
+| Windows | 部分支持 | 详见下方 |
+
+### Windows 平台 Applet 兼容性
+
+| Applet | Windows 支持 | 说明 |
+|--------|-------------|------|
+| cat, cp, cut, echo, expr, find, grep, head, mkdir, mv, readlink, relax, rm, sort, tail, test, touch, tr, uniq, wc | 完整 | 跨平台，行为一致 |
+| ls, du, ln | 完整 | 已适配 Windows（无 Unix 文件类型/模式） |
+| df, free, ps, uptime, whoami, uname, kill | 部分 | 使用 Windows API（wmic, tasklist, taskkill） |
+| chmod, chgrp, chown, id, su | 不支持 | Unix 专属概念（权限、属主、信号） |
+
 ## 许可证
 
 文档基于 [CC BY-SA 4.0](LICENSE) 协议授权。

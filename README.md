@@ -179,6 +179,23 @@ IdleBox reimagines the classic BusyBox concept in modern Rust. The name embodies
 
 While BusyBox has powered embedded Linux for over two decades, IdleBox brings the same multi-call binary paradigm into the Rust ecosystem — with zero dependencies, a ~360KB footprint, and beautiful ANSI-colored terminal output.
 
+## Platform Support
+
+| Platform | Status | Notes |
+|----------|--------|-------|
+| Linux | Full | All 36 applets supported |
+| macOS | Full | All 36 applets supported |
+| Windows | Partial | See details below |
+
+### Windows Applet Compatibility
+
+| Applet | Windows Support | Notes |
+|--------|----------------|-------|
+| cat, cp, cut, echo, expr, find, grep, head, mkdir, mv, readlink, relax, rm, sort, tail, test, touch, tr, uniq, wc | Full | Cross-platform, identical behavior |
+| ls, du, ln | Full | Adapted for Windows (no Unix file types/modes) |
+| df, free, ps, uptime, whoami, uname, kill | Partial | Uses Windows APIs (wmic, tasklist, taskkill) |
+| chmod, chgrp, chown, id, su | Not supported | Unix-only concepts (permissions, ownership, signals) |
+
 ## License
 
 Documentation is licensed under [CC BY-SA 4.0](LICENSE).
