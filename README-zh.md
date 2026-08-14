@@ -35,6 +35,11 @@ idlebox-docs/
 │       ├── test.md
 │       ├── expr.md
 │       ├── find.md
+│       ├── wc.md
+│       ├── sort.md
+│       ├── uniq.md
+│       ├── cut.md
+│       ├── tr.md
 │       ├── relax.md
 │       └── install.md
 ├── zh/                         # 中文文档
@@ -64,6 +69,11 @@ idlebox-docs/
 │       ├── test.md
 │       ├── expr.md
 │       ├── find.md
+│       ├── wc.md
+│       ├── sort.md
+│       ├── uniq.md
+│       ├── cut.md
+│       ├── tr.md
 │       ├── relax.md
 │       └── install.md
 └── LICENSE                     # CC BY-SA 4.0
@@ -98,6 +108,11 @@ idlebox-docs/
 - [Applet: test](en/applets/test.md)
 - [Applet: expr](en/applets/expr.md)
 - [Applet: find](en/applets/find.md)
+- [Applet: wc](en/applets/wc.md)
+- [Applet: sort](en/applets/sort.md)
+- [Applet: uniq](en/applets/uniq.md)
+- [Applet: cut](en/applets/cut.md)
+- [Applet: tr](en/applets/tr.md)
 - [Applet: relax](en/applets/relax.md)
 - [--install: Automated Deployment](en/applets/install.md)
 
@@ -128,6 +143,11 @@ idlebox-docs/
 - [Applet: test](zh/applets/test.md)
 - [Applet: expr](zh/applets/expr.md)
 - [Applet: find](zh/applets/find.md)
+- [Applet: wc](zh/applets/wc.md)
+- [Applet: sort](zh/applets/sort.md)
+- [Applet: uniq](zh/applets/uniq.md)
+- [Applet: cut](zh/applets/cut.md)
+- [Applet: tr](zh/applets/tr.md)
 - [Applet: relax](zh/applets/relax.md)
 - [--install: 自动化部署](zh/applets/install.md)
 
