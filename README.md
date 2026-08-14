@@ -23,6 +23,8 @@ idlebox-docs/
 │       ├── tail.md
 │       ├── grep.md
 │       ├── chmod.md
+│       ├── chown.md
+│       ├── chgrp.md
 │       ├── df.md
 │       ├── du.md
 │       ├── ps.md
@@ -40,6 +42,9 @@ idlebox-docs/
 │       ├── uniq.md
 │       ├── cut.md
 │       ├── tr.md
+│       ├── id.md
+│       ├── whoami.md
+│       ├── su.md
 │       ├── relax.md
 │       └── install.md
 ├── zh/                         # Chinese documentation (中文文档)
@@ -57,6 +62,8 @@ idlebox-docs/
 │       ├── tail.md
 │       ├── grep.md
 │       ├── chmod.md
+│       ├── chown.md
+│       ├── chgrp.md
 │       ├── df.md
 │       ├── du.md
 │       ├── ps.md
@@ -74,6 +81,9 @@ idlebox-docs/
 │       ├── uniq.md
 │       ├── cut.md
 │       ├── tr.md
+│       ├── id.md
+│       ├── whoami.md
+│       ├── su.md
 │       ├── relax.md
 │       └── install.md
 └── LICENSE                     # CC BY-SA 4.0
@@ -96,6 +106,8 @@ idlebox-docs/
 - [Applet: tail](en/applets/tail.md)
 - [Applet: grep](en/applets/grep.md)
 - [Applet: chmod](en/applets/chmod.md)
+- [Applet: chown](en/applets/chown.md)
+- [Applet: chgrp](en/applets/chgrp.md)
 - [Applet: df](en/applets/df.md)
 - [Applet: du](en/applets/du.md)
 - [Applet: ps](en/applets/ps.md)
@@ -113,6 +125,9 @@ idlebox-docs/
 - [Applet: uniq](en/applets/uniq.md)
 - [Applet: cut](en/applets/cut.md)
 - [Applet: tr](en/applets/tr.md)
+- [Applet: id](en/applets/id.md)
+- [Applet: whoami](en/applets/whoami.md)
+- [Applet: su](en/applets/su.md)
 - [Applet: relax](en/applets/relax.md)
 - [--install: Automated Deployment](en/applets/install.md)
 
@@ -131,6 +146,8 @@ idlebox-docs/
 - [Applet: tail](zh/applets/tail.md)
 - [Applet: grep](zh/applets/grep.md)
 - [Applet: chmod](zh/applets/chmod.md)
+- [Applet: chown](zh/applets/chown.md)
+- [Applet: chgrp](zh/applets/chgrp.md)
 - [Applet: df](zh/applets/df.md)
 - [Applet: du](zh/applets/du.md)
 - [Applet: ps](zh/applets/ps.md)
@@ -148,6 +165,9 @@ idlebox-docs/
 - [Applet: uniq](zh/applets/uniq.md)
 - [Applet: cut](zh/applets/cut.md)
 - [Applet: tr](zh/applets/tr.md)
+- [Applet: id](zh/applets/id.md)
+- [Applet: whoami](zh/applets/whoami.md)
+- [Applet: su](zh/applets/su.md)
 - [Applet: relax](zh/applets/relax.md)
 - [--install: 自动化部署](zh/applets/install.md)
 
