@@ -14,14 +14,24 @@ idlebox-docs/
 │       ├── echo.md
 │       ├── cat.md
 │       ├── ls.md
-│       └── relax.md
+│       ├── mkdir.md
+│       ├── rm.md
+│       ├── cp.md
+│       ├── mv.md
+│       ├── relax.md
+│       └── install.md
 ├── zh/                         # 中文文档
 │   ├── architecture.md         # 系统架构与设计
 │   └── applets/                # Applet 命令参考
 │       ├── echo.md
 │       ├── cat.md
 │       ├── ls.md
-│       └── relax.md
+│       ├── mkdir.md
+│       ├── rm.md
+│       ├── cp.md
+│       ├── mv.md
+│       ├── relax.md
+│       └── install.md
 └── LICENSE                     # CC BY-SA 4.0
 ```
 
@@ -33,7 +43,12 @@ idlebox-docs/
 - [Applet: echo](en/applets/echo.md)
 - [Applet: cat](en/applets/cat.md)
 - [Applet: ls](en/applets/ls.md)
+- [Applet: mkdir](en/applets/mkdir.md)
+- [Applet: rm](en/applets/rm.md)
+- [Applet: cp](en/applets/cp.md)
+- [Applet: mv](en/applets/mv.md)
 - [Applet: relax](en/applets/relax.md)
+- [--install: Automated Deployment](en/applets/install.md)
 
 ### 中文
 
@@ -41,7 +56,12 @@ idlebox-docs/
 - [Applet: echo](zh/applets/echo.md)
 - [Applet: cat](zh/applets/cat.md)
 - [Applet: ls](zh/applets/ls.md)
+- [Applet: mkdir](zh/applets/mkdir.md)
+- [Applet: rm](zh/applets/rm.md)
+- [Applet: cp](zh/applets/cp.md)
+- [Applet: mv](zh/applets/mv.md)
 - [Applet: relax](zh/applets/relax.md)
+- [--install: 自动化部署](zh/applets/install.md)
 
 ## 关于空闲盒
 
