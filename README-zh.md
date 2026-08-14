@@ -29,6 +29,9 @@ idlebox-docs/
 │       ├── kill.md
 │       ├── free.md
 │       ├── uptime.md
+│       ├── ln.md
+│       ├── readlink.md
+│       ├── uname.md
 │       ├── relax.md
 │       └── install.md
 ├── zh/                         # 中文文档
@@ -52,6 +55,9 @@ idlebox-docs/
 │       ├── kill.md
 │       ├── free.md
 │       ├── uptime.md
+│       ├── ln.md
+│       ├── readlink.md
+│       ├── uname.md
 │       ├── relax.md
 │       └── install.md
 └── LICENSE                     # CC BY-SA 4.0
@@ -80,6 +86,9 @@ idlebox-docs/
 - [Applet: kill](en/applets/kill.md)
 - [Applet: free](en/applets/free.md)
 - [Applet: uptime](en/applets/uptime.md)
+- [Applet: ln](en/applets/ln.md)
+- [Applet: readlink](en/applets/readlink.md)
+- [Applet: uname](en/applets/uname.md)
 - [Applet: relax](en/applets/relax.md)
 - [--install: Automated Deployment](en/applets/install.md)
 
@@ -104,6 +113,9 @@ idlebox-docs/
 - [Applet: kill](zh/applets/kill.md)
 - [Applet: free](zh/applets/free.md)
 - [Applet: uptime](zh/applets/uptime.md)
+- [Applet: ln](zh/applets/ln.md)
+- [Applet: readlink](zh/applets/readlink.md)
+- [Applet: uname](zh/applets/uname.md)
 - [Applet: relax](zh/applets/relax.md)
 - [--install: 自动化部署](zh/applets/install.md)
 
