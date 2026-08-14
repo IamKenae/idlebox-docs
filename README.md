@@ -22,6 +22,9 @@ idlebox-docs/
 │       ├── head.md
 │       ├── tail.md
 │       ├── grep.md
+│       ├── chmod.md
+│       ├── df.md
+│       ├── du.md
 │       ├── relax.md
 │       └── install.md
 ├── zh/                         # Chinese documentation (中文文档)
@@ -38,6 +41,9 @@ idlebox-docs/
 │       ├── head.md
 │       ├── tail.md
 │       ├── grep.md
+│       ├── chmod.md
+│       ├── df.md
+│       ├── du.md
 │       ├── relax.md
 │       └── install.md
 └── LICENSE                     # CC BY-SA 4.0
@@ -59,6 +65,9 @@ idlebox-docs/
 - [Applet: head](en/applets/head.md)
 - [Applet: tail](en/applets/tail.md)
 - [Applet: grep](en/applets/grep.md)
+- [Applet: chmod](en/applets/chmod.md)
+- [Applet: df](en/applets/df.md)
+- [Applet: du](en/applets/du.md)
 - [Applet: relax](en/applets/relax.md)
 - [--install: Automated Deployment](en/applets/install.md)
 
@@ -76,6 +85,9 @@ idlebox-docs/
 - [Applet: head](zh/applets/head.md)
 - [Applet: tail](zh/applets/tail.md)
 - [Applet: grep](zh/applets/grep.md)
+- [Applet: chmod](zh/applets/chmod.md)
+- [Applet: df](zh/applets/df.md)
+- [Applet: du](zh/applets/du.md)
 - [Applet: relax](zh/applets/relax.md)
 - [--install: 自动化部署](zh/applets/install.md)
 
