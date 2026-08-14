@@ -1,10 +1,10 @@
-# IdleBox Documentation / 空闲盒文档
+# 空闲盒文档 / IdleBox Documentation
 
-> **[中文文档](README-zh.md)**
+> **[English](README.md)**
 
-Welcome to the official documentation repository for **IdleBox** — an independent, lightweight, and visually polished BusyBox/POSIX-compatible toolbox written in pure Rust with zero external dependencies.
+欢迎来到 **IdleBox（空闲盒）** 的官方文档仓库 —— 一个独立、轻量、高颜值的 BusyBox/POSIX 兼容工具箱，使用纯 Rust 编写，零外部依赖。
 
-## Repository Structure
+## 仓库结构
 
 ```
 idlebox-docs/
@@ -15,7 +15,7 @@ idlebox-docs/
 │       ├── cat.md
 │       ├── ls.md
 │       └── relax.md
-├── zh/                         # Chinese documentation (中文文档)
+├── zh/                         # 中文文档
 │   ├── architecture.md         # 系统架构与设计
 │   └── applets/                # Applet 命令参考
 │       ├── echo.md
@@ -25,7 +25,7 @@ idlebox-docs/
 └── LICENSE                     # CC BY-SA 4.0
 ```
 
-## Quick Links
+## 快速导航
 
 ### English
 
@@ -43,16 +43,16 @@ idlebox-docs/
 - [Applet: ls](zh/applets/ls.md)
 - [Applet: relax](zh/applets/relax.md)
 
-## About IdleBox
+## 关于空闲盒
 
-IdleBox reimagines the classic BusyBox concept in modern Rust. The name embodies our philosophy:
+IdleBox 以现代 Rust 语言重新诠释了经典的 BusyBox 理念。项目名蕴含了我们的设计哲学：
 
-> **Say goodbye to Busy, embrace Idle.**
+> **告别 Busy，拥抱 Idle。**
 
-While BusyBox has powered embedded Linux for over two decades, IdleBox brings the same multi-call binary paradigm into the Rust ecosystem — with zero dependencies, a ~360KB footprint, and beautiful ANSI-colored terminal output.
+BusyBox 在嵌入式 Linux 领域服务了二十余年，而 IdleBox 将这种"多调用二进制"的范式带入 Rust 生态 —— 零依赖、约 360KB 的极致体积、以及赏心悦目的 ANSI 彩色终端输出。
 
-## License
+## 许可证
 
-Documentation is licensed under [CC BY-SA 4.0](LICENSE).
+文档基于 [CC BY-SA 4.0](LICENSE) 协议授权。
 
-Copyright (c) IdleBox Contributors.
+版权所有 (c) IdleBox Contributors.
