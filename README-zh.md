@@ -32,6 +32,9 @@ idlebox-docs/
 │       ├── ln.md
 │       ├── readlink.md
 │       ├── uname.md
+│       ├── test.md
+│       ├── expr.md
+│       ├── find.md
 │       ├── relax.md
 │       └── install.md
 ├── zh/                         # 中文文档
@@ -58,6 +61,9 @@ idlebox-docs/
 │       ├── ln.md
 │       ├── readlink.md
 │       ├── uname.md
+│       ├── test.md
+│       ├── expr.md
+│       ├── find.md
 │       ├── relax.md
 │       └── install.md
 └── LICENSE                     # CC BY-SA 4.0
@@ -89,6 +95,9 @@ idlebox-docs/
 - [Applet: ln](en/applets/ln.md)
 - [Applet: readlink](en/applets/readlink.md)
 - [Applet: uname](en/applets/uname.md)
+- [Applet: test](en/applets/test.md)
+- [Applet: expr](en/applets/expr.md)
+- [Applet: find](en/applets/find.md)
 - [Applet: relax](en/applets/relax.md)
 - [--install: Automated Deployment](en/applets/install.md)
 
@@ -116,6 +125,9 @@ idlebox-docs/
 - [Applet: ln](zh/applets/ln.md)
 - [Applet: readlink](zh/applets/readlink.md)
 - [Applet: uname](zh/applets/uname.md)
+- [Applet: test](zh/applets/test.md)
+- [Applet: expr](zh/applets/expr.md)
+- [Applet: find](zh/applets/find.md)
 - [Applet: relax](zh/applets/relax.md)
 - [--install: 自动化部署](zh/applets/install.md)
 
