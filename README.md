@@ -18,6 +18,10 @@ idlebox-docs/
 │       ├── rm.md
 │       ├── cp.md
 │       ├── mv.md
+│       ├── touch.md
+│       ├── head.md
+│       ├── tail.md
+│       ├── grep.md
 │       ├── relax.md
 │       └── install.md
 ├── zh/                         # Chinese documentation (中文文档)
@@ -30,6 +34,10 @@ idlebox-docs/
 │       ├── rm.md
 │       ├── cp.md
 │       ├── mv.md
+│       ├── touch.md
+│       ├── head.md
+│       ├── tail.md
+│       ├── grep.md
 │       ├── relax.md
 │       └── install.md
 └── LICENSE                     # CC BY-SA 4.0
@@ -47,6 +55,10 @@ idlebox-docs/
 - [Applet: rm](en/applets/rm.md)
 - [Applet: cp](en/applets/cp.md)
 - [Applet: mv](en/applets/mv.md)
+- [Applet: touch](en/applets/touch.md)
+- [Applet: head](en/applets/head.md)
+- [Applet: tail](en/applets/tail.md)
+- [Applet: grep](en/applets/grep.md)
 - [Applet: relax](en/applets/relax.md)
 - [--install: Automated Deployment](en/applets/install.md)
 
@@ -60,6 +72,10 @@ idlebox-docs/
 - [Applet: rm](zh/applets/rm.md)
 - [Applet: cp](zh/applets/cp.md)
 - [Applet: mv](zh/applets/mv.md)
+- [Applet: touch](zh/applets/touch.md)
+- [Applet: head](zh/applets/head.md)
+- [Applet: tail](zh/applets/tail.md)
+- [Applet: grep](zh/applets/grep.md)
 - [Applet: relax](zh/applets/relax.md)
 - [--install: 自动化部署](zh/applets/install.md)
 
