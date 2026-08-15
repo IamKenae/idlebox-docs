@@ -148,7 +148,7 @@ GitHub Actions 将验证拆分为四个工作流：
 - **Quality** 检查格式化、所有目标的 Clippy 与编译，并将 rustdoc 警告视为错误。
 - **Build & Test** 在原生 Linux x86_64、macOS 和 Windows x86_64 上运行完整测试并生成 Release 产物；macOS 与 Windows 还会 lint 各自的平台专属代码路径。
 - **Portability** 在 Alpine/musl 中测试最低 Rust 1.85 工具链，并交叉 lint glibc/musl 下的 ARMv7 与 AArch64 Linux、Windows i686 和 Windows ARM64。
-- **Binary Size** 使用 Rust 1.85 构建，并强制执行 Linux Release 体积预算：glibc 800 KiB、musl 900 KiB。因此，提高预算必须经过显式工作流改动，二进制不会静默增长。
+- **Binary Size** 生成体积优化的 glibc 与静态 musl Release，并在工作流摘要中报告精确字节数。体积变化继续作为工程取舍依据，但不再使用固定上限阻塞高收益功能。
 
 无论 PR 直接基于 `main`，还是堆叠在其他分支上，都会触发全部工作流。
 

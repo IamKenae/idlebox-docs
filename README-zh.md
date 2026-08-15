@@ -11,6 +11,7 @@ idlebox-docs/
 ├── en/                         # English documentation
 │   ├── architecture.md         # System architecture & design
 │   └── applets/                # Applet reference guides
+│       ├── basename.md
 │       ├── echo.md
 │       ├── cat.md
 │       ├── ls.md
@@ -46,10 +47,21 @@ idlebox-docs/
 │       ├── whoami.md
 │       ├── su.md
 │       ├── relax.md
+│       ├── dirname.md
+│       ├── env.md
+│       ├── false.md
+│       ├── printf.md
+│       ├── printenv.md
+│       ├── pwd.md
+│       ├── realpath.md
+│       ├── sleep.md
+│       ├── tee.md
+│       ├── true.md
 │       └── install.md
 ├── zh/                         # 中文文档
 │   ├── architecture.md         # 系统架构与设计
 │   └── applets/                # Applet 命令参考
+│       ├── basename.md
 │       ├── echo.md
 │       ├── cat.md
 │       ├── ls.md
@@ -85,6 +97,16 @@ idlebox-docs/
 │       ├── whoami.md
 │       ├── su.md
 │       ├── relax.md
+│       ├── dirname.md
+│       ├── env.md
+│       ├── false.md
+│       ├── printf.md
+│       ├── printenv.md
+│       ├── pwd.md
+│       ├── realpath.md
+│       ├── sleep.md
+│       ├── tee.md
+│       ├── true.md
 │       └── install.md
 └── LICENSE                     # CC BY-SA 4.0
 ```
@@ -94,6 +116,17 @@ idlebox-docs/
 ### English
 
 - [Architecture Overview](en/architecture.md)
+- [Applet: basename](en/applets/basename.md)
+- [Applet: dirname](en/applets/dirname.md)
+- [Applet: env](en/applets/env.md)
+- [Applet: false](en/applets/false.md)
+- [Applet: printf](en/applets/printf.md)
+- [Applet: printenv](en/applets/printenv.md)
+- [Applet: pwd](en/applets/pwd.md)
+- [Applet: realpath](en/applets/realpath.md)
+- [Applet: sleep](en/applets/sleep.md)
+- [Applet: tee](en/applets/tee.md)
+- [Applet: true](en/applets/true.md)
 - [Applet: echo](en/applets/echo.md)
 - [Applet: cat](en/applets/cat.md)
 - [Applet: ls](en/applets/ls.md)
@@ -134,6 +167,17 @@ idlebox-docs/
 ### 中文
 
 - [架构概览](zh/architecture.md)
+- [Applet: basename](zh/applets/basename.md)
+- [Applet: dirname](zh/applets/dirname.md)
+- [Applet: env](zh/applets/env.md)
+- [Applet: false](zh/applets/false.md)
+- [Applet: printf](zh/applets/printf.md)
+- [Applet: printenv](zh/applets/printenv.md)
+- [Applet: pwd](zh/applets/pwd.md)
+- [Applet: realpath](zh/applets/realpath.md)
+- [Applet: sleep](zh/applets/sleep.md)
+- [Applet: tee](zh/applets/tee.md)
+- [Applet: true](zh/applets/true.md)
 - [Applet: echo](zh/applets/echo.md)
 - [Applet: cat](zh/applets/cat.md)
 - [Applet: ls](zh/applets/ls.md)
@@ -185,15 +229,15 @@ BusyBox 在嵌入式 Linux 领域服务了二十余年，而 IdleBox 将这种�
 
 | 平台 | 状态 | 说明 |
 |------|------|------|
-| Linux | 完整支持 | 全部 36 个 Applet |
-| macOS | 完整支持 | 全部 36 个 Applet |
+| Linux | 完整支持 | 全部 47 个 Applet |
+| macOS | 完整支持 | 全部 47 个 Applet |
 | Windows | 部分支持 | 详见下方 |
 
 ### Windows 平台 Applet 兼容性
 
 | Applet | Windows 支持 | 说明 |
 |--------|-------------|------|
-| cat, cp, cut, echo, expr, find, grep, head, mkdir, mv, readlink, relax, rm, sort, tail, test, touch, tr, uniq, wc | 完整 | 跨平台，行为一致 |
+| basename, cat, cp, cut, dirname, echo, env, expr, false, find, grep, head, mkdir, mv, printf, printenv, pwd, readlink, realpath, relax, rm, sleep, sort, tail, tee, test, touch, tr, true, uniq, wc | 完整 | 跨平台，行为一致 |
 | ls, du, ln | 完整 | 已适配 Windows（无 Unix 文件类型/模式） |
 | df, free, ps, uptime, whoami, uname, kill | 部分 | 使用 Windows API（wmic, tasklist, taskkill） |
 | chmod, chgrp, chown, id, su | 不支持 | Unix 专属概念（权限、属主、信号） |
