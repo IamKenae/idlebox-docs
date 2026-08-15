@@ -30,6 +30,10 @@ idlebox gunzip -c image.raw.gz > image.raw
 
 The failure-safe output and pure-Rust backend guarantees documented for [gzip](gzip.md) also apply to `gunzip`.
 
+## Terminal Behavior
+
+When standard input is a terminal, `gunzip` prints an error and exits rather than blocking. Use `-f` to force decompression, or pipe data from another command.
+
 ## See Also
 
 - [gzip](gzip.md)

@@ -20,6 +20,10 @@ idlebox zcat part-1.gz part-2.gz > combined.txt
 idlebox cat payload.gz | idlebox zcat
 ```
 
+## 终端行为
+
+当标准输入为终端时，`zcat` 会打印错误并退出，而不是阻塞等待输入。使用管道从其他命令输入数据即可从标准输入解压。
+
 ## 参见
 
 - [gzip](gzip.md)

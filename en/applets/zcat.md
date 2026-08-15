@@ -20,6 +20,10 @@ idlebox zcat part-1.gz part-2.gz > combined.txt
 idlebox cat payload.gz | idlebox zcat
 ```
 
+## Terminal Behavior
+
+When standard input is a terminal, `zcat` prints an error and exits rather than blocking. Pipe data from another command to decompress from standard input.
+
 ## See Also
 
 - [gzip](gzip.md)

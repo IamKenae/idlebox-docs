@@ -30,6 +30,10 @@ idlebox gunzip -c image.raw.gz > image.raw
 
 [gzip](gzip.md) 中说明的失败安全输出与纯 Rust 后端保证同样适用于 `gunzip`。
 
+## 终端行为
+
+当标准输入为终端时，`gunzip` 会打印错误并退出，而不是阻塞等待输入。使用 `-f` 可强制解压，或从其他命令管道输入数据。
+
 ## 参见
 
 - [gzip](gzip.md)

@@ -70,6 +70,7 @@ idlebox grep "pattern" file1.txt file2.txt
 - Returns exit code 0 on match, 1 on no match, 2 on error
 - Multiple files prefix output with `filename:`
 - Line numbers are 1-based (matching POSIX convention)
+- When invoked without a pattern, prints usage information and exits with code 2
 
 ## See Also
 

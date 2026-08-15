@@ -36,6 +36,7 @@ idlebox cat payload.bin | idlebox gzip -c > payload.bin.gz
 
 ## Safety and Implementation Notes
 
+- When standard input is a terminal, `gzip` prints an error and exits rather than blocking. Use `-f` to force decompression, or pipe data from another command.
 - Compression and decompression are streamed rather than buffering the complete file.
 - File output is written to a temporary file in the destination directory and published only after the stream succeeds.
 - Source-file permissions are applied to the staged output before it is published.
