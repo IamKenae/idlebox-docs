@@ -53,7 +53,7 @@ idlebox --install
 #   Installed: /usr/local/bin/cat (symbolic link)
 #   Installed: /usr/local/bin/echo (symbolic link)
 #   ...
-# Done. 36 installed, 0 updated, 0 already installed.
+# Done. 47 installed, 0 updated, 0 already installed.
 
 # Install to a custom directory
 idlebox --install ./bin
@@ -81,7 +81,7 @@ On Windows PowerShell:
 # Installing IdleBox applets to C:\Users\me\AppData\Local\IdleBox\bin...
 #   Installed: C:\Users\me\AppData\Local\IdleBox\bin\cat.exe (hard link)
 #   ...
-# Done. 36 installed, 0 updated, 0 already installed.
+# Done. 47 installed, 0 updated, 0 already installed.
 
 # Install to and invoke from a custom directory
 .\idlebox.exe --install .\bin

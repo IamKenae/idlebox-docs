@@ -53,7 +53,7 @@ idlebox --install
 #   Installed: /usr/local/bin/cat (symbolic link)
 #   Installed: /usr/local/bin/echo (symbolic link)
 #   ...
-# Done. 36 installed, 0 updated, 0 already installed.
+# Done. 47 installed, 0 updated, 0 already installed.
 
 # 安装到自定义目录
 idlebox --install ./bin
@@ -81,7 +81,7 @@ Windows PowerShell 示例：
 # Installing IdleBox applets to C:\Users\me\AppData\Local\IdleBox\bin...
 #   Installed: C:\Users\me\AppData\Local\IdleBox\bin\cat.exe (hard link)
 #   ...
-# Done. 36 installed, 0 updated, 0 already installed.
+# Done. 47 installed, 0 updated, 0 already installed.
 
 # 安装到自定义目录并直接调用
 .\idlebox.exe --install .\bin
