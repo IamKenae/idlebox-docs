@@ -196,6 +196,8 @@ While BusyBox has powered embedded Linux for over two decades, IdleBox brings th
 | df, free, ps, uptime, whoami, uname, kill | Partial | Uses Windows APIs (wmic, tasklist, taskkill) |
 | chmod, chgrp, chown, id, su | Not supported | Unix-only concepts (permissions, ownership, signals) |
 
+`idlebox --install` is supported on both Unix-like systems and Windows. It creates symbolic links on Unix-like systems and `.exe` hard links on Windows, with a file-copy fallback when hard links are unavailable.
+
 ## License
 
 Documentation is licensed under [CC BY-SA 4.0](LICENSE).

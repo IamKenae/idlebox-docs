@@ -23,12 +23,14 @@ src/
 ├── core/
 │   ├── mod.rs           # Core 模块导出
 │   ├── applet.rs        # Applet trait 定义
-│   └── dispatcher.rs    # Applet 注册表与分发逻辑
+│   ├── dispatcher.rs    # Applet 注册表与分发逻辑
+│   └── install.rs       # 跨平台 launcher 安装
 └── applets/
     ├── mod.rs           # Applet 模块导出
     ├── echo.rs          # echo Applet
     ├── cat.rs           # cat Applet
     ├── ls.rs            # ls Applet（ANSI 彩色）
+    ├── ...               # 其他 POSIX 风格 Applet
     └── relax.rs         # relax Applet（IdleBox 特色）
 ```
 
@@ -71,27 +73,34 @@ idlebox ls --color=auto -lah
 
 二进制名称为 `idlebox`，第一个参数选择要运行的 Applet。
 
-#### 2. 符号链接模式（多调用）
+#### 2. 已安装 Launcher 模式（多调用）
 
 ```bash
-ln -s idlebox echo
-ln -s idlebox ls
-./echo "Hello via symlink!"
-./ls --color=auto
+# Unix-like 系统：符号链接 launcher
+idlebox --install ./bin
+./bin/echo "Hello from a launcher!"
+./bin/ls --color=auto
 ```
 
-二进制文件检查 `argv[0]` 来确定运行哪个 Applet，实现 BusyBox 风格的符号链接调用。
+```powershell
+# Windows：.exe 硬链接，失败时回退为文件副本
+.\idlebox.exe --install .\bin
+.\bin\echo.exe "Hello from a launcher!"
+```
+
+二进制文件检查 `argv[0]` 中的文件名，并在选择 Applet 前移除末尾的 `.exe`。因此，Unix-like 系统可以保留 BusyBox 风格的符号链接调用，Windows 则可以使用普通的可执行 launcher。
 
 ## 分发流程
 
 ```
 main()
   │
-  ├─ 解析 argv[0]（二进制名称）
+  ├─ 解析 argv[0] 中的文件名，并移除末尾的 ".exe"
   │   ├─ "idlebox" → 使用 argv[1] 作为 Applet 名称
-  │   └─ 其他      → 使用 argv[0] 作为 Applet 名称（符号链接模式）
+  │   └─ 其他      → 使用 launcher 文件名作为 Applet 名称
   │
   ├─ 特殊情况："list" → 打印所有 Applet 并退出
+  ├─ 特殊情况："--install" → 安装所有 Applet launcher 并退出
   │
   └─ Dispatcher::dispatch(name, args)
       │
@@ -100,7 +109,7 @@ main()
       └─ 匹配 Applet 名称 → 实例化并运行
           ├─ "echo"  → EchoApplet
           ├─ "cat"   → CatApplet
-          ├─ "ls"    → LsApplet
+          ├─ ...
           └─ "relax" → RelaxApplet
 ```
 
@@ -124,6 +133,6 @@ strip = true          # 剥离调试符号
 1. 创建 `src/applets/my_applet.rs`
 2. 实现 `Applet` trait
 3. 在 `src/applets/mod.rs` 中导出
-4. 在 `src/core/dispatcher.rs` 中注册（`dispatch()` 和 `list_applets()` 两处）
+4. 在 `src/core/dispatcher.rs` 的 `dispatch()`、`applet_names()` 和 `list_applets()` 中注册
 
 请参阅各 [Applet 文档](applets/) 获取实现示例。

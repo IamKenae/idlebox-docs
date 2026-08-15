@@ -196,6 +196,8 @@ BusyBox 在嵌入式 Linux 领域服务了二十余年，而 IdleBox 将这种"�
 | df, free, ps, uptime, whoami, uname, kill | 部分 | 使用 Windows API（wmic, tasklist, taskkill） |
 | chmod, chgrp, chown, id, su | 不支持 | Unix 专属概念（权限、属主、信号） |
 
+`idlebox --install` 同时支持 Unix-like 系统和 Windows：Unix-like 系统创建符号链接；Windows 创建 `.exe` 硬链接，无法使用硬链接时回退为文件副本。
+
 ## 许可证
 
 文档基于 [CC BY-SA 4.0](LICENSE) 协议授权。

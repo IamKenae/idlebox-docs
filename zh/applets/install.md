@@ -10,54 +10,73 @@ idlebox --install [路径]
 
 ## 描述
 
-`--install` 命令通过在一目标目录下创建符号链接（symlink）来自动部署所有已注册的 IdleBox Applet。每个符号链接都指向当前的 `idlebox` 二进制文件，从而实现多调用二进制模式 —— 通过不同的符号链接名调用时，会自动分发到对应的 Applet。
+`--install` 命令通过在目标目录中创建适合当前平台的 launcher，部署所有已注册的 IdleBox Applet。每个 launcher 都以对应 Applet 的名称复用当前 `idlebox` 二进制文件。IdleBox 从 `argv[0]` 读取该名称，并分发到相应的 Applet。
 
 这是将 IdleBox Applet 安装到系统全局或自定义 `PATH` 目录的推荐方式。
+
+| 平台 | Launcher | 默认目标目录 |
+|------|----------|--------------|
+| Unix-like 系统 | 符号链接 | `/usr/local/bin` |
+| Windows | `<applet>.exe` 硬链接；失败时回退为文件副本 | `%LOCALAPPDATA%\IdleBox\bin`；若不可用则回退到 `%USERPROFILE%\.local\bin` |
 
 ## 参数
 
 | 参数 | 描述 |
 |------|------|
-| `[路径]` | 符号链接的目标目录。省略时默认为 `/usr/local/bin`。 |
+| `[路径]` | 可选的目标目录；指定后会覆盖当前平台的默认目录。 |
 
 ## 行为
 
 - 若目标目录不存在，自动创建。
-- 遍历所有已注册的 Applet（`cat`、`echo`、`ls`、`relax`）。
-- 为每个 Applet 创建指向当前 `idlebox` 二进制的符号链接。
-- 若目标位置已存在文件或符号链接，无需确认直接覆盖。
-- 使用 `std::os::unix::fs::symlink` 实现 —— 仅支持 Unix-like 系统（Linux、macOS、BSD）。在其他平台上会输出错误提示。
+- 从 Dispatcher 获取完整的 Applet 列表，并为每个已注册名称创建一个 launcher。
+- 在 Unix-like 系统上创建符号链接。若 launcher 与 `idlebox` 位于同一目录，则使用相对目标；否则使用二进制文件的规范路径。
+- 在 Windows 上创建 `<applet>.exe` 硬链接。如果无法创建硬链接（例如跨文件系统），则回退为独占创建的文件副本。
+- 先在目标旁的临时路径创建 launcher，再移动到最终位置。已有文件或 launcher 会被直接替换；若同名目标是目录，则报错并保留该目录。
+- 为每个 launcher 输出实际安装方式：`symbolic link`、`hard link` 或 `copy`。
+- 支持 Unix-like 系统和 Windows；其他平台会返回“不支持的平台”错误。
 
 ## 示例
 
 ```bash
-# 安装到默认位置（/usr/local/bin）
+# Unix：安装到默认位置
 idlebox --install
 # 输出:
 # Installing IdleBox applets to /usr/local/bin...
-#   Created symlink: /usr/local/bin/cat -> idlebox
-#   Created symlink: /usr/local/bin/echo -> idlebox
-#   Created symlink: /usr/local/bin/ls -> idlebox
-#   Created symlink: /usr/local/bin/relax -> idlebox
-# Done. 4 applets installed.
+#   Installed: /usr/local/bin/cat (symbolic link)
+#   Installed: /usr/local/bin/echo (symbolic link)
+#   ...
+# Done. 36 applets installed.
 
 # 安装到自定义目录
-idlebox --install /tmp/mybin
-# 输出:
-# Installing IdleBox applets to /tmp/mybin...
-#   Created symlink: /tmp/mybin/cat -> idlebox
-#   ...
+idlebox --install ./bin
 
 # 直接使用已安装的 Applet
-echo "hello" | /tmp/mybin/cat
-/tmp/mybin/ls -lah /tmp
+./bin/echo "hello from a launcher"
+./bin/ls -lah
+```
+
+Windows PowerShell 示例：
+
+```powershell
+# 安装到 %LOCALAPPDATA%\IdleBox\bin
+.\idlebox.exe --install
+# 输出:
+# Installing IdleBox applets to C:\Users\me\AppData\Local\IdleBox\bin...
+#   Installed: C:\Users\me\AppData\Local\IdleBox\bin\cat.exe (hard link)
+#   ...
+# Done. 36 applets installed.
+
+# 安装到自定义目录并直接调用
+.\idlebox.exe --install .\bin
+.\bin\echo.exe "hello from a launcher"
 ```
 
 ## 注意事项
 
-- 当目标目录与 `idlebox` 二进制所在目录不同时，符号链接使用绝对路径；当安装到二进制所在目录时，使用相对路径。
-- 安装完成后，请确保目标目录已加入 `$PATH`，以便直接通过名称调用 Applet。
-- 如需卸载，只需删除目标目录中的符号链接即可。
+- Windows 硬链接 launcher 与当前 `idlebox.exe` 共享同一份文件数据，而复制回退得到的是独立快照。替换原始二进制文件后，应重新运行 `--install`，确保所有 launcher 均已刷新。
+- 重复运行 `--install` 会刷新已有 launcher；它绝不会删除与 launcher 同名的目录。
+- 安装完成后，请确保目标目录已加入 `PATH` 环境变量，以便直接通过名称调用 Applet。
+- 如需卸载，只需删除目标目录中的 launcher 即可。
 
 ## 参见
 

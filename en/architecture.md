@@ -23,12 +23,14 @@ src/
 ├── core/
 │   ├── mod.rs           # Core module exports
 │   ├── applet.rs        # Applet trait definition
-│   └── dispatcher.rs    # Applet registry & dispatch logic
+│   ├── dispatcher.rs    # Applet registry & dispatch logic
+│   └── install.rs       # Cross-platform launcher installation
 └── applets/
     ├── mod.rs           # Applet module exports
     ├── echo.rs          # echo applet
     ├── cat.rs           # cat applet
     ├── ls.rs            # ls applet (ANSI color)
+    ├── ...               # Other POSIX-style applets
     └── relax.rs         # relax applet (IdleBox special)
 ```
 
@@ -71,27 +73,34 @@ idlebox ls --color=auto -lah
 
 The binary name is `idlebox`, and the first argument selects the applet.
 
-#### 2. Symlink Mode (Multi-call)
+#### 2. Installed Launcher Mode (Multi-call)
 
 ```bash
-ln -s idlebox echo
-ln -s idlebox ls
-./echo "Hello via symlink!"
-./ls --color=auto
+# Unix-like systems: symbolic-link launchers
+idlebox --install ./bin
+./bin/echo "Hello from a launcher!"
+./bin/ls --color=auto
 ```
 
-The binary inspects `argv[0]` to determine which applet to run, enabling BusyBox-style symlink invocation.
+```powershell
+# Windows: .exe hard links, with a file-copy fallback
+.\idlebox.exe --install .\bin
+.\bin\echo.exe "Hello from a launcher!"
+```
+
+The binary inspects the filename in `argv[0]` and removes a trailing `.exe` before selecting the applet. This preserves BusyBox-style invocation through symbolic links on Unix-like systems while allowing ordinary executable launchers on Windows.
 
 ## Dispatch Flow
 
 ```
 main()
   │
-  ├─ Parse argv[0] (binary name)
+  ├─ Parse the filename in argv[0] and strip a trailing ".exe"
   │   ├─ "idlebox" → use argv[1] as applet name
-  │   └─ other     → use argv[0] as applet name (symlink mode)
+  │   └─ other     → use the launcher filename as applet name
   │
   ├─ Special case: "list" → print all applets & exit
+  ├─ Special case: "--install" → install all applet launchers & exit
   │
   └─ Dispatcher::dispatch(name, args)
       │
@@ -100,7 +109,7 @@ main()
       └─ Match applet name → instantiate & run
           ├─ "echo"  → EchoApplet
           ├─ "cat"   → CatApplet
-          ├─ "ls"    → LsApplet
+          ├─ ...
           └─ "relax" → RelaxApplet
 ```
 
@@ -124,6 +133,6 @@ This produces a ~360KB binary suitable for embedded systems, containers, and res
 1. Create `src/applets/my_applet.rs`
 2. Implement the `Applet` trait
 3. Export it in `src/applets/mod.rs`
-4. Register it in `src/core/dispatcher.rs` (both `dispatch()` and `list_applets()`)
+4. Register it in `src/core/dispatcher.rs` in `dispatch()`, `applet_names()`, and `list_applets()`
 
 See the individual [applet docs](applets/) for implementation examples.
