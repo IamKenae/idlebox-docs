@@ -59,7 +59,10 @@ idlebox-docs/
 │       ├── tar.md
 │       ├── gzip.md
 │       ├── gunzip.md
-│       ├── zcat.md
+│       ├── md5sum.md
+│       ├── sha1sum.md
+│       ├── sha256sum.md
+│       ├── sha512sum.md
 │       ├── unzip.md
 │       ├── true.md
 │       └── install.md
@@ -114,7 +117,10 @@ idlebox-docs/
 │       ├── tar.md
 │       ├── gzip.md
 │       ├── gunzip.md
-│       ├── zcat.md
+│       ├── md5sum.md
+│       ├── sha1sum.md
+│       ├── sha256sum.md
+│       ├── sha512sum.md
 │       ├── unzip.md
 │       ├── true.md
 │       └── install.md
@@ -139,7 +145,10 @@ idlebox-docs/
 - [Applet: tar](en/applets/tar.md)
 - [Applet: gzip](en/applets/gzip.md)
 - [Applet: gunzip](en/applets/gunzip.md)
-- [Applet: zcat](en/applets/zcat.md)
+- [Applet: md5sum](en/applets/md5sum.md)
+- [Applet: sha1sum](en/applets/sha1sum.md)
+- [Applet: sha256sum](en/applets/sha256sum.md)
+- [Applet: sha512sum](en/applets/sha512sum.md)
 - [Applet: unzip](en/applets/unzip.md)
 - [Applet: true](en/applets/true.md)
 - [Applet: echo](en/applets/echo.md)
@@ -195,7 +204,10 @@ idlebox-docs/
 - [Applet: tar](zh/applets/tar.md)
 - [Applet: gzip](zh/applets/gzip.md)
 - [Applet: gunzip](zh/applets/gunzip.md)
-- [Applet: zcat](zh/applets/zcat.md)
+- [Applet: md5sum](zh/applets/md5sum.md)
+- [Applet: sha1sum](zh/applets/sha1sum.md)
+- [Applet: sha256sum](zh/applets/sha256sum.md)
+- [Applet: sha512sum](zh/applets/sha512sum.md)
 - [Applet: unzip](zh/applets/unzip.md)
 - [Applet: true](zh/applets/true.md)
 - [Applet: echo](zh/applets/echo.md)
@@ -257,7 +269,7 @@ BusyBox 在嵌入式 Linux 领域服务了二十余年，而 IdleBox 将这种�
 
 | Applet | Windows 支持 | 说明 |
 |--------|-------------|------|
-| basename, cat, cp, cut, dirname, echo, env, expr, false, find, grep, gunzip, gzip, head, mkdir, mv, printf, printenv, pwd, readlink, realpath, relax, rm, sleep, sort, tail, tee, test, touch, tr, true, uniq, wc, zcat | 完整 | 跨平台，行为一致 |
+| b3sum, basename, cat, cp, cut, dirname, echo, env, expr, false, find, grep, gunzip, gzip, head, md5sum, mkdir, mv, printf, printenv, pwd, readlink, realpath, relax, rm, sha1sum, sha256sum, sha512sum, sleep, sort, tail, tee, test, touch, tr, true, uniq, wc, zcat | 完整 | 跨平台，行为一致 |
 | ls, du, ln, unzip | 完整 | 已适配 Windows（无 Unix 文件类型/模式；忽略 ZIP 权限位） |
 | tar | 部分 | 支持普通文件与目录；不支持解包符号链接 |
 | df, free, ps, uptime, whoami, uname, kill | 部分 | 使用 Windows API（wmic, tasklist, taskkill） |
