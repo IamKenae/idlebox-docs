@@ -143,7 +143,14 @@ strip = true          # Strip debug symbols
 
 This produces a binary optimized for size. Its actual size depends on the target platform, Rust toolchain, and linking strategy, so suitability should be judged from measurements of each release artifact.
 
-CI validates native Linux, macOS, and Windows builds, a Windows cross-target, and the minimum Rust 1.85 toolchain inside Alpine/musl. Pull requests trigger these checks regardless of whether they are based directly on `main` or stacked on another branch.
+GitHub Actions separates validation into four workflows:
+
+- **Quality** checks formatting, all-target Clippy and compilation, and rustdoc with warnings denied.
+- **Build & Test** runs the full suite and produces release artifacts on native Linux x86_64, macOS, and Windows x86_64. macOS and Windows also lint their platform-specific code paths.
+- **Portability** tests the minimum Rust 1.85 toolchain inside Alpine/musl and cross-lints ARMv7/AArch64 Linux with glibc and musl, Windows i686, and Windows ARM64.
+- **Binary Size** builds with Rust 1.85 and enforces explicit Linux release budgets of 800 KiB for glibc and 900 KiB for musl. Increasing a budget therefore requires a visible workflow change rather than silently growing the binary.
+
+Pull requests trigger every workflow regardless of whether they are based directly on `main` or stacked on another branch.
 
 ## Adding a New Applet
 
