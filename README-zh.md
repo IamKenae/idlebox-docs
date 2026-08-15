@@ -2,7 +2,7 @@
 
 > **[English](README.md)**
 
-欢迎来到 **IdleBox（空闲盒）** 的官方文档仓库 —— 一个独立、轻量、高颜值的 BusyBox/POSIX 兼容工具箱，使用纯 Rust 编写，零外部依赖。
+欢迎来到 **IdleBox（空闲盒）** 的官方文档仓库 —— 一个受 BusyBox 启发的独立、轻量、高颜值多调用工具箱，使用纯 Rust 编写，零外部依赖。
 
 ## 仓库结构
 
@@ -177,7 +177,9 @@ IdleBox 以现代 Rust 语言重新诠释了经典的 BusyBox 理念。项目名
 
 > **告别 Busy，拥抱 Idle。**
 
-BusyBox 在嵌入式 Linux 领域服务了二十余年，而 IdleBox 将这种"多调用二进制"的范式带入 Rust 生态 —— 零依赖、约 360KB 的极致体积、以及赏心悦目的 ANSI 彩色终端输出。
+BusyBox 在嵌入式 Linux 领域服务了二十余年，而 IdleBox 将这种“多调用二进制”的范式带入 Rust 生态，追求零依赖、紧凑构建和赏心悦目的终端体验。
+
+当前阶段优先在尽量保持灵活、小巧、轻便与高性能的前提下，优化 IdleBox 自身的结构、基础功能和用户体验；随后再从高频用法开始，逐步提升对 POSIX、BusyBox 和 GNU 工具行为的兼容能力。该顺序是当前工程策略，不永久限定项目的长期方向。
 
 ## 平台支持
 
@@ -195,6 +197,8 @@ BusyBox 在嵌入式 Linux 领域服务了二十余年，而 IdleBox 将这种"�
 | ls, du, ln | 完整 | 已适配 Windows（无 Unix 文件类型/模式） |
 | df, free, ps, uptime, whoami, uname, kill | 部分 | 使用 Windows API（wmic, tasklist, taskkill） |
 | chmod, chgrp, chown, id, su | 不支持 | Unix 专属概念（权限、属主、信号） |
+
+`idlebox --install` 同时支持 Unix-like 系统和 Windows：Unix-like 系统创建符号链接；Windows 创建 `.exe` 硬链接，无法使用硬链接时回退为文件副本。
 
 ## 许可证
 

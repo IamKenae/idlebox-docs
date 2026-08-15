@@ -59,8 +59,9 @@ idlebox wc -l file1.txt file2.txt
 ## Implementation Notes
 
 - Located in `src/applets/wc.rs`
-- Reads entire file into memory for accurate byte/char counting
-- Words are counted using whitespace splitting (matching POSIX behavior)
+- Reads in fixed 8 KiB chunks instead of buffering the entire file
+- Skips Unicode decoding when only byte and/or newline counts are requested
+- Preserves character and Unicode-whitespace word counting across UTF-8 chunk boundaries; invalid sequences follow lossy replacement semantics
 - Multiple files produce a `total` summary line
 - Output is right-aligned with 7-character-wide columns
 

@@ -10,7 +10,7 @@ uniq [OPTION]... [INPUT [OUTPUT]]
 
 ## Description
 
-The `uniq` applet filters adjacent matching lines from INPUT (or standard input), writing to stdout. By default, it collapses runs of identical lines into a single output line. Note that `uniq` only detects lines that are adjacent — consider using `sort` first if your input is not already grouped.
+The `uniq` applet filters adjacent matching lines from INPUT (or standard input), writing to OUTPUT when supplied and to standard output otherwise. By default, it collapses runs of identical lines into a single output line. Note that `uniq` only detects lines that are adjacent — consider using `sort` first if your input is not already grouped.
 
 ## Options
 
@@ -58,6 +58,9 @@ idlebox uniq -c -d file.txt
 
 # From stdin pipe
 cat file.txt | idlebox uniq -c
+
+# Stream results directly to an output file
+idlebox uniq -c input.txt output.txt
 ```
 
 ## Implementation Notes
@@ -65,8 +68,9 @@ cat file.txt | idlebox uniq -c
 - Located in `src/applets/uniq.rs`
 - Only detects adjacent duplicate lines (POSIX behavior)
 - Count output is right-aligned with 7-character-wide column
-- Case-insensitive mode lowercases both lines for comparison
-- Reads all lines into memory before processing
+- Case-insensitive mode keeps one folded comparison key for the current group
+- Streams adjacent groups with memory proportional to the longest pair of input lines
+- Rejects extra operands and refuses an identical INPUT/OUTPUT spelling instead of silently truncating input
 
 ## See Also
 
