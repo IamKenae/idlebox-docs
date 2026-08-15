@@ -2,7 +2,7 @@
 
 > **[English](README.md)**
 
-欢迎来到 **IdleBox（空闲盒）** 的官方文档仓库 —— 一个受 BusyBox 启发的独立、轻量、高颜值多调用工具箱，使用纯 Rust 编写，零外部依赖。
+欢迎来到 **IdleBox（空闲盒）** 的官方文档仓库 —— 一个受 BusyBox 启发的独立、轻量、高颜值多调用工具箱，采用 Rust 编写，仅保留少量纯 Rust 依赖，不捆绑 C 库。
 
 ## 仓库结构
 
@@ -56,6 +56,11 @@ idlebox-docs/
 │       ├── realpath.md
 │       ├── sleep.md
 │       ├── tee.md
+│       ├── tar.md
+│       ├── gzip.md
+│       ├── gunzip.md
+│       ├── zcat.md
+│       ├── unzip.md
 │       ├── true.md
 │       └── install.md
 ├── zh/                         # 中文文档
@@ -106,6 +111,11 @@ idlebox-docs/
 │       ├── realpath.md
 │       ├── sleep.md
 │       ├── tee.md
+│       ├── tar.md
+│       ├── gzip.md
+│       ├── gunzip.md
+│       ├── zcat.md
+│       ├── unzip.md
 │       ├── true.md
 │       └── install.md
 └── LICENSE                     # CC BY-SA 4.0
@@ -126,6 +136,11 @@ idlebox-docs/
 - [Applet: realpath](en/applets/realpath.md)
 - [Applet: sleep](en/applets/sleep.md)
 - [Applet: tee](en/applets/tee.md)
+- [Applet: tar](en/applets/tar.md)
+- [Applet: gzip](en/applets/gzip.md)
+- [Applet: gunzip](en/applets/gunzip.md)
+- [Applet: zcat](en/applets/zcat.md)
+- [Applet: unzip](en/applets/unzip.md)
 - [Applet: true](en/applets/true.md)
 - [Applet: echo](en/applets/echo.md)
 - [Applet: cat](en/applets/cat.md)
@@ -177,6 +192,11 @@ idlebox-docs/
 - [Applet: realpath](zh/applets/realpath.md)
 - [Applet: sleep](zh/applets/sleep.md)
 - [Applet: tee](zh/applets/tee.md)
+- [Applet: tar](zh/applets/tar.md)
+- [Applet: gzip](zh/applets/gzip.md)
+- [Applet: gunzip](zh/applets/gunzip.md)
+- [Applet: zcat](zh/applets/zcat.md)
+- [Applet: unzip](zh/applets/unzip.md)
 - [Applet: true](zh/applets/true.md)
 - [Applet: echo](zh/applets/echo.md)
 - [Applet: cat](zh/applets/cat.md)
@@ -221,7 +241,7 @@ IdleBox 以现代 Rust 语言重新诠释了经典的 BusyBox 理念。项目名
 
 > **告别 Busy，拥抱 Idle。**
 
-BusyBox 在嵌入式 Linux 领域服务了二十余年，而 IdleBox 将这种“多调用二进制”的范式带入 Rust 生态，追求零依赖、紧凑构建和赏心悦目的终端体验。
+BusyBox 在嵌入式 Linux 领域服务了二十余年，而 IdleBox 将这种“多调用二进制”的范式带入 Rust 生态，采用少量纯 Rust 依赖，并继续追求紧凑构建和赏心悦目的终端体验。
 
 当前阶段优先在尽量保持灵活、小巧、轻便与高性能的前提下，优化 IdleBox 自身的结构、基础功能和用户体验；随后再从高频用法开始，逐步提升对 POSIX、BusyBox 和 GNU 工具行为的兼容能力。该顺序是当前工程策略，不永久限定项目的长期方向。
 
@@ -229,16 +249,17 @@ BusyBox 在嵌入式 Linux 领域服务了二十余年，而 IdleBox 将这种�
 
 | 平台 | 状态 | 说明 |
 |------|------|------|
-| Linux | 完整支持 | 全部 47 个 Applet |
-| macOS | 完整支持 | 全部 47 个 Applet |
+| Linux | 完整支持 | 全部 52 个 Applet |
+| macOS | 完整支持 | 全部 52 个 Applet |
 | Windows | 部分支持 | 详见下方 |
 
 ### Windows 平台 Applet 兼容性
 
 | Applet | Windows 支持 | 说明 |
 |--------|-------------|------|
-| basename, cat, cp, cut, dirname, echo, env, expr, false, find, grep, head, mkdir, mv, printf, printenv, pwd, readlink, realpath, relax, rm, sleep, sort, tail, tee, test, touch, tr, true, uniq, wc | 完整 | 跨平台，行为一致 |
-| ls, du, ln | 完整 | 已适配 Windows（无 Unix 文件类型/模式） |
+| basename, cat, cp, cut, dirname, echo, env, expr, false, find, grep, gunzip, gzip, head, mkdir, mv, printf, printenv, pwd, readlink, realpath, relax, rm, sleep, sort, tail, tee, test, touch, tr, true, uniq, wc, zcat | 完整 | 跨平台，行为一致 |
+| ls, du, ln, unzip | 完整 | 已适配 Windows（无 Unix 文件类型/模式；忽略 ZIP 权限位） |
+| tar | 部分 | 支持普通文件与目录；不支持解包符号链接 |
 | df, free, ps, uptime, whoami, uname, kill | 部分 | 使用 Windows API（wmic, tasklist, taskkill） |
 | chmod, chgrp, chown, id, su | 不支持 | Unix 专属概念（权限、属主、信号） |
 

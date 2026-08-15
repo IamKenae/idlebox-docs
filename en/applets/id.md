@@ -47,7 +47,7 @@ idlebox id root
 
 - Located in `src/applets/id.rs`
 - Uses POSIX `getuid()`, `geteuid()`, `getgid()`, `getegid()`, `getpwuid()`, `getpwnam()`, `getgrgid()`, `getgroups()`, and `getgrouplist()` FFI calls
-- Zero external dependencies — pure Rust standard library + POSIX libc FFI
+- No applet-specific crate dependency — Rust standard library + POSIX libc FFI
 - Default output format: `uid=1000(username) gid=1000(groupname) groups=1000(groupname),...`
 
 ## See Also

@@ -39,7 +39,7 @@ idlebox chgrp users file1.txt file2.txt
 - Located in `src/applets/chgrp.rs`
 - Uses POSIX `chown()` and `lchown()` FFI calls (with UID unchanged)
 - Symlinks are handled via `lchown()` (does not follow symlinks)
-- Zero external dependencies — pure Rust standard library + POSIX libc FFI
+- No applet-specific crate dependency — Rust standard library + POSIX libc FFI
 
 ## See Also
 

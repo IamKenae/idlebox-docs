@@ -40,7 +40,7 @@ idlebox printf '%b' 'first\nsecond\n'
 ## Implementation Notes
 
 - Located in `src/applets/printf.rs`
-- Formats directly from a small parser without external dependencies
+- Formats directly from a small parser without an applet-specific crate dependency
 - Supports decimal, hexadecimal, octal, quoted-character numeric operands, and C-style escapes
 
 ## See Also

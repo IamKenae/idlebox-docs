@@ -40,7 +40,7 @@ idlebox printf '%b' 'first\nsecond\n'
 ## 实现说明
 
 - 位于 `src/applets/printf.rs`
-- 通过小型解析器完成格式化，不依赖外部 crate
+- 通过小型解析器完成格式化，不引入 Applet 专用 crate
 - 支持十进制、十六进制、八进制、引号字符数值参数和 C 风格转义
 
 ## 参见

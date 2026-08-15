@@ -45,7 +45,7 @@ idlebox su -s /bin/bash username
 - Uses POSIX `getpwnam()` and `getuid()` FFI calls
 - Login shell mode resets `HOME`, `USER`, `SHELL`, `LOGNAME`, and `PATH`
 - Only root (UID 0) can switch to another user; non-root users will receive a permission denied error
-- Zero external dependencies — pure Rust standard library + POSIX libc FFI
+- No applet-specific crate dependency — Rust standard library + POSIX libc FFI
 
 ## See Also
 

@@ -52,7 +52,7 @@ idlebox chown 1000:1000 file.txt
 - Located in `src/applets/chown.rs`
 - Uses POSIX `chown()` and `lchown()` FFI calls
 - Symlinks are handled via `lchown()` (does not follow symlinks)
-- Zero external dependencies — pure Rust standard library + POSIX libc FFI
+- No applet-specific crate dependency — Rust standard library + POSIX libc FFI
 
 ## See Also
 

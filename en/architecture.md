@@ -10,7 +10,7 @@ IdleBox follows a modular, multi-call binary architecture inspired by BusyBox. A
 
 IdleBox reimagines the classic BusyBox concept in modern Rust:
 
-- **Zero Dependencies** — Only the Rust standard library; no third-party crates
+- **Minimal Pure-Rust Dependencies** — Third-party code is limited to focused Rust crates; compression uses `flate2` with `miniz_oxide`, never a C zlib backend
 - **Flexible and Modular** — A uniform applet interface keeps features extensible within one multi-call binary
 - **Size and Performance Conscious** — LTO, `opt-level = "z"`, `codegen-units = 1`, and `strip` keep release overhead controlled
 - **Progressive Compatibility** — Starts with common Unix/POSIX workflows and incrementally expands BusyBox and GNU behavior
@@ -20,7 +20,7 @@ IdleBox reimagines the classic BusyBox concept in modern Rust:
 
 IdleBox's long-term direction includes improving behavioral compatibility with POSIX, BusyBox, and GNU tools, but complete replacement is not a prerequisite for the current stage. Work proceeds in this order:
 
-1. Preserve flexibility, a small footprint, low overhead, and high performance while retaining the single-binary, zero-dependency foundation
+1. Preserve flexibility, a small footprint, low overhead, and high performance while retaining the single-binary foundation and a minimal pure-Rust dependency set
 2. Optimize IdleBox itself first: architecture, correctness, core functionality, user experience, and cross-platform consistency
 3. Once the foundation is stable, support high-frequency real-world usage before expanding into complete standards and long-tail behavior
 4. Evaluate new features, abstractions, and compatibility layers using binary size, startup time, throughput, and test results
@@ -142,6 +142,8 @@ strip = true          # Strip debug symbols
 ```
 
 This produces a binary optimized for size. Its actual size depends on the target platform, Rust toolchain, and linking strategy, so suitability should be judged from measurements of each release artifact.
+
+Archive applets add `flate2` and `crc32fast`. `flate2` disables default features and explicitly selects `rust_backend`, which routes DEFLATE through `miniz_oxide`; therefore these applets do not link zlib or another C compression library.
 
 GitHub Actions separates validation into four workflows:
 
