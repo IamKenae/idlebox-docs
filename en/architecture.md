@@ -11,9 +11,21 @@ IdleBox follows a modular, multi-call binary architecture inspired by BusyBox. A
 IdleBox reimagines the classic BusyBox concept in modern Rust:
 
 - **Zero Dependencies** — Only the Rust standard library; no third-party crates
-- **Minimal Footprint** — ~360KB release binary via LTO, `opt-level = "z"`, `codegen-units = 1`, and `strip`
-- **POSIX Compatible** — Drop-in replacement for common Unix utilities
+- **Flexible and Modular** — A uniform applet interface keeps features extensible within one multi-call binary
+- **Size and Performance Conscious** — LTO, `opt-level = "z"`, `codegen-units = 1`, and `strip` keep release overhead controlled
+- **Progressive Compatibility** — Starts with common Unix/POSIX workflows and incrementally expands BusyBox and GNU behavior
 - **Beautiful Output** — Built-in ANSI color support for a delightful terminal experience
+
+### Current Engineering Priorities
+
+IdleBox's long-term direction includes improving behavioral compatibility with POSIX, BusyBox, and GNU tools, but complete replacement is not a prerequisite for the current stage. Work proceeds in this order:
+
+1. Preserve flexibility, a small footprint, low overhead, and high performance while retaining the single-binary, zero-dependency foundation
+2. Optimize IdleBox itself first: architecture, correctness, core functionality, user experience, and cross-platform consistency
+3. Once the foundation is stable, support high-frequency real-world usage before expanding into complete standards and long-tail behavior
+4. Evaluate new features, abstractions, and compatibility layers using binary size, startup time, throughput, and test results
+
+This ordering describes the current development strategy and does not permanently constrain the project's long-term evolution.
 
 ## Source Tree
 
@@ -126,7 +138,7 @@ panic = "abort"       # Remove panic unwinding overhead
 strip = true          # Strip debug symbols
 ```
 
-This produces a ~360KB binary suitable for embedded systems, containers, and rescue environments.
+This produces a binary optimized for size. Its actual size depends on the target platform, Rust toolchain, and linking strategy, so suitability should be judged from measurements of each release artifact.
 
 ## Adding a New Applet
 

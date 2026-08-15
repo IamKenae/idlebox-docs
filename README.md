@@ -2,7 +2,7 @@
 
 > **[中文文档](README-zh.md)**
 
-Welcome to the official documentation repository for **IdleBox** — an independent, lightweight, and visually polished BusyBox/POSIX-compatible toolbox written in pure Rust with zero external dependencies.
+Welcome to the official documentation repository for **IdleBox** — an independent, lightweight, and visually polished multi-call toolbox inspired by BusyBox, written in pure Rust with zero external dependencies.
 
 ## Repository Structure
 
@@ -177,7 +177,9 @@ IdleBox reimagines the classic BusyBox concept in modern Rust. The name embodies
 
 > **Say goodbye to Busy, embrace Idle.**
 
-While BusyBox has powered embedded Linux for over two decades, IdleBox brings the same multi-call binary paradigm into the Rust ecosystem — with zero dependencies, a ~360KB footprint, and beautiful ANSI-colored terminal output.
+While BusyBox has powered embedded Linux for over two decades, IdleBox brings the same multi-call binary paradigm into the Rust ecosystem with zero dependencies, compact builds, and beautiful ANSI-colored terminal output.
+
+The current stage prioritizes improving IdleBox's structure, core functionality, and user experience while preserving flexibility, a small footprint, low overhead, and high performance. Compatibility with POSIX, BusyBox, and GNU behavior then expands incrementally, starting with common workflows. This ordering is a current engineering strategy and does not permanently constrain the project's long-term direction.
 
 ## Platform Support
 
