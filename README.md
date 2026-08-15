@@ -2,7 +2,7 @@
 
 > **[中文文档](README-zh.md)**
 
-Welcome to the official documentation repository for **IdleBox** — an independent, lightweight, and visually polished multi-call toolbox inspired by BusyBox, written in pure Rust with zero external dependencies.
+Welcome to the official documentation repository for **IdleBox** — an independent, lightweight, and visually polished multi-call toolbox inspired by BusyBox, written in Rust with a deliberately small pure-Rust dependency footprint and no bundled C libraries.
 
 ## Repository Structure
 
@@ -56,6 +56,11 @@ idlebox-docs/
 │       ├── realpath.md
 │       ├── sleep.md
 │       ├── tee.md
+│       ├── tar.md
+│       ├── gzip.md
+│       ├── gunzip.md
+│       ├── zcat.md
+│       ├── unzip.md
 │       ├── true.md
 │       └── install.md
 ├── zh/                         # Chinese documentation (中文文档)
@@ -106,6 +111,11 @@ idlebox-docs/
 │       ├── realpath.md
 │       ├── sleep.md
 │       ├── tee.md
+│       ├── tar.md
+│       ├── gzip.md
+│       ├── gunzip.md
+│       ├── zcat.md
+│       ├── unzip.md
 │       ├── true.md
 │       └── install.md
 └── LICENSE                     # CC BY-SA 4.0
@@ -126,6 +136,11 @@ idlebox-docs/
 - [Applet: realpath](en/applets/realpath.md)
 - [Applet: sleep](en/applets/sleep.md)
 - [Applet: tee](en/applets/tee.md)
+- [Applet: tar](en/applets/tar.md)
+- [Applet: gzip](en/applets/gzip.md)
+- [Applet: gunzip](en/applets/gunzip.md)
+- [Applet: zcat](en/applets/zcat.md)
+- [Applet: unzip](en/applets/unzip.md)
 - [Applet: true](en/applets/true.md)
 - [Applet: echo](en/applets/echo.md)
 - [Applet: cat](en/applets/cat.md)
@@ -177,6 +192,11 @@ idlebox-docs/
 - [Applet: realpath](zh/applets/realpath.md)
 - [Applet: sleep](zh/applets/sleep.md)
 - [Applet: tee](zh/applets/tee.md)
+- [Applet: tar](zh/applets/tar.md)
+- [Applet: gzip](zh/applets/gzip.md)
+- [Applet: gunzip](zh/applets/gunzip.md)
+- [Applet: zcat](zh/applets/zcat.md)
+- [Applet: unzip](zh/applets/unzip.md)
 - [Applet: true](zh/applets/true.md)
 - [Applet: echo](zh/applets/echo.md)
 - [Applet: cat](zh/applets/cat.md)
@@ -221,7 +241,7 @@ IdleBox reimagines the classic BusyBox concept in modern Rust. The name embodies
 
 > **Say goodbye to Busy, embrace Idle.**
 
-While BusyBox has powered embedded Linux for over two decades, IdleBox brings the same multi-call binary paradigm into the Rust ecosystem with zero dependencies, compact builds, and beautiful ANSI-colored terminal output.
+While BusyBox has powered embedded Linux for over two decades, IdleBox brings the same multi-call binary paradigm into the Rust ecosystem with a small pure-Rust dependency set, compact builds, and beautiful ANSI-colored terminal output.
 
 The current stage prioritizes improving IdleBox's structure, core functionality, and user experience while preserving flexibility, a small footprint, low overhead, and high performance. Compatibility with POSIX, BusyBox, and GNU behavior then expands incrementally, starting with common workflows. This ordering is a current engineering strategy and does not permanently constrain the project's long-term direction.
 
@@ -229,16 +249,17 @@ The current stage prioritizes improving IdleBox's structure, core functionality,
 
 | Platform | Status | Notes |
 |----------|--------|-------|
-| Linux | Full | All 47 applets supported |
-| macOS | Full | All 47 applets supported |
+| Linux | Full | All 52 applets supported |
+| macOS | Full | All 52 applets supported |
 | Windows | Partial | See details below |
 
 ### Windows Applet Compatibility
 
 | Applet | Windows Support | Notes |
 |--------|----------------|-------|
-| basename, cat, cp, cut, dirname, echo, env, expr, false, find, grep, head, mkdir, mv, printf, printenv, pwd, readlink, realpath, relax, rm, sleep, sort, tail, tee, test, touch, tr, true, uniq, wc | Full | Cross-platform, identical behavior |
-| ls, du, ln | Full | Adapted for Windows (no Unix file types/modes) |
+| basename, cat, cp, cut, dirname, echo, env, expr, false, find, grep, gunzip, gzip, head, mkdir, mv, printf, printenv, pwd, readlink, realpath, relax, rm, sleep, sort, tail, tee, test, touch, tr, true, uniq, wc, zcat | Full | Cross-platform, identical behavior |
+| ls, du, ln, unzip | Full | Adapted for Windows (no Unix file types/modes; ZIP permission bits are ignored) |
+| tar | Partial | Regular files and directories are supported; symbolic-link extraction is unavailable |
 | df, free, ps, uptime, whoami, uname, kill | Partial | Uses Windows APIs (wmic, tasklist, taskkill) |
 | chmod, chgrp, chown, id, su | Not supported | Unix-only concepts (permissions, ownership, signals) |
 

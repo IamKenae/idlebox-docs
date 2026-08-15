@@ -27,7 +27,7 @@ idlebox whoami
 
 - Located in `src/applets/whoami.rs`
 - Uses POSIX `geteuid()` and `getpwuid()` FFI calls
-- Zero external dependencies — pure Rust standard library + POSIX libc FFI
+- No applet-specific crate dependency — Rust standard library + POSIX libc FFI
 
 ## See Also
 

@@ -70,7 +70,7 @@ idlebox ls /usr/bin /usr/local/bin
 ```
 -rw-r--r--   1  1000  1000     1234 Aug 15 10:30 README.md
 drwxr-xr-x   3  1000  1000     4096 Aug 14 09:00 src
--rwxr-xr-x   1  1000  1000   362K Aug 15 01:55 idlebox
+-rwxr-xr-x   1  1000  1000   616736 Aug 15 01:55 idlebox
 ```
 
 字段：`类型+权限`、`链接数`、`UID`、`GID`、`大小`、`修改日期`、`文件名`
@@ -78,7 +78,7 @@ drwxr-xr-x   3  1000  1000     4096 Aug 14 09:00 src
 ## 实现说明
 
 - 位于 `src/applets/ls.rs`
-- TTY 检测使用原生 `fstat` 系统调用（无 libc 依赖）自动判断是否支持颜色
+- TTY 检测使用 Rust 标准库 `IsTerminal` API 自动判断是否支持颜色
 - 人类可读大小使用二进制单位（1K = 1024 字节）
 - 时间戳使用自定义日期计算格式化（无 chrono 依赖）
 - 权限位包含 SUID/SGID/sticky 位指示符（`s`、`S`、`t`、`T`）

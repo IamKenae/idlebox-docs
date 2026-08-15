@@ -1,6 +1,6 @@
 # grep — Search for Patterns in Files or Standard Input
 
-> **Other languages:** [中文](../../zh/applets/tail.md)
+> **Other languages:** [中文](../../zh/applets/grep.md)
 
 ## Synopsis
 
@@ -65,7 +65,7 @@ idlebox grep "pattern" file1.txt file2.txt
 ## Implementation Notes
 
 - Located in `src/applets/grep.rs`
-- Uses simple substring matching (not regex) for zero-dependency design
+- Uses simple substring matching without a regex or applet-specific crate dependency
 - Case-insensitive mode lowercases both pattern and line for comparison
 - Returns exit code 0 on match, 1 on no match, 2 on error
 - Multiple files prefix output with `filename:`

@@ -70,7 +70,7 @@ The `-l` flag produces output in the following format:
 ```
 -rw-r--r--   1  1000  1000     1234 Aug 15 10:30 README.md
 drwxr-xr-x   3  1000  1000     4096 Aug 14 09:00 src
--rwxr-xr-x   1  1000  1000   362K Aug 15 01:55 idlebox
+-rwxr-xr-x   1  1000  1000   616736 Aug 15 01:55 idlebox
 ```
 
 Fields: `type+permissions`, `link count`, `UID`, `GID`, `size`, `modification date`, `filename`
@@ -78,7 +78,7 @@ Fields: `type+permissions`, `link count`, `UID`, `GID`, `size`, `modification da
 ## Implementation Notes
 
 - Located in `src/applets/ls.rs`
-- TTY detection uses raw `fstat` syscall (no libc dependency) to auto-detect color support
+- TTY detection uses Rust's standard `IsTerminal` API to auto-detect color support
 - Human-readable sizes use binary units (1K = 1024 bytes)
 - Timestamps are formatted using a custom date calculation (no chrono dependency)
 - Permission bits include SUID/SGID/sticky bit indicators (`s`, `S`, `t`, `T`)

@@ -45,7 +45,7 @@ idlebox su -s /bin/bash 用户名
 - 使用 POSIX `getpwnam()` 和 `getuid()` FFI 调用
 - 登录 Shell 模式会重置 `HOME`、`USER`、`SHELL`、`LOGNAME` 和 `PATH` 环境变量
 - 仅 root（UID 0）可以切换到其他用户；非 root 用户将收到权限拒绝错误
-- 零外部依赖 — 纯 Rust 标准库 + POSIX libc FFI
+- 无 Applet 专属 crate 依赖 — Rust 标准库 + POSIX libc FFI
 
 ## 参见
 

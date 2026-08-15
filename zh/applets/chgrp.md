@@ -39,7 +39,7 @@ idlebox chgrp users file1.txt file2.txt
 - 位于 `src/applets/chgrp.rs`
 - 使用 POSIX `chown()` 和 `lchown()` FFI 调用（UID 不变）
 - 符号链接通过 `lchown()` 处理（不跟随符号链接）
-- 零外部依赖 — 纯 Rust 标准库 + POSIX libc FFI
+- 无 Applet 专属 crate 依赖 — Rust 标准库 + POSIX libc FFI
 
 ## 参见
 
