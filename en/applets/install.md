@@ -25,6 +25,8 @@ This is the recommended way to make IdleBox applets available system-wide or in 
 |----------|-------------|
 | `[PATH]` | Optional target directory. When supplied, it overrides the platform default. |
 
+Use `--` before PATH when the path starts with `-`. More than one target path is rejected instead of being silently ignored, and `idlebox --install --help` prints command-specific help without installing anything.
+
 ## Behavior
 
 - Creates the target directory if it does not exist.
@@ -49,6 +51,9 @@ idlebox --install
 
 # Install to a custom directory
 idlebox --install ./bin
+
+# Install to a path whose name starts with a dash
+idlebox --install -- -tools
 
 # Use the installed applets directly
 ./bin/echo "hello from a launcher"

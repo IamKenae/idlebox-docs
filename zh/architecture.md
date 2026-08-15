@@ -53,7 +53,7 @@ src/
 每个 Applet 都实现定义在 `src/core/applet.rs` 中的 `Applet` trait：
 
 ```rust
-pub trait Applet {
+pub trait Applet: Sync {
     fn name(&self) -> &'static str;
     fn description(&self) -> &'static str;
     fn run(&self, args: &[String]) -> Result<i32, Box<dyn std::error::Error>>;
@@ -67,10 +67,10 @@ pub trait Applet {
 
 `src/core/dispatcher.rs` 包含 `Dispatcher` 结构体，负责：
 
-1. 维护所有可用 Applet 的注册表
-2. 根据名称将传入命令路由到正确的 Applet
-3. 统一处理所有 Applet 的 `--help` / `-h` 标志
-4. 为 `list` 子命令提供 `list_applets()` 函数
+1. 维护一份供分发、列举和 launcher 安装共同使用的静态注册表
+2. 根据名称路由 Applet，调用时不再重复构建注册表
+3. 单次扫描参数并处理 `--help` 与适用的 `-h`，同时尊重 `--` 结束标记
+4. 为 `list`、`--list` 和 `--install` 提供同一组已注册名称
 
 ### 调用模式
 
@@ -81,6 +81,7 @@ IdleBox 支持两种调用模式：
 ```bash
 idlebox echo "Hello, World!"
 idlebox ls --color=auto -lah
+idlebox help ls
 ```
 
 二进制名称为 `idlebox`，第一个参数选择要运行的 Applet。
@@ -111,14 +112,16 @@ main()
   │   ├─ "idlebox" → 使用 argv[1] 作为 Applet 名称
   │   └─ 其他      → 使用 launcher 文件名作为 Applet 名称
   │
-  ├─ 特殊情况："list" → 打印所有 Applet 并退出
+  ├─ 特殊情况："--help"、"--version" 与 "help [APPLET]"
+  ├─ 特殊情况："list" / "--list" → 打印所有 Applet 并退出
   ├─ 特殊情况："--install" → 安装所有 Applet launcher 并退出
   │
   └─ Dispatcher::dispatch(name, args)
       │
-      ├─ 检查 --help / -h → 打印帮助并退出
+      ├─ 在静态注册表中查找 Applet
+      ├─ 检查 --help / 适用的 -h → 打印帮助并退出
       │
-      └─ 匹配 Applet 名称 → 实例化并运行
+      └─ 运行已注册的 Applet
           ├─ "echo"  → EchoApplet
           ├─ "cat"   → CatApplet
           ├─ ...
@@ -127,7 +130,7 @@ main()
 
 ## 构建优化
 
-`Cargo.toml` 的 Release 配置针对最小二进制体积进行了调优：
+项目声明 Rust 1.85 为最低支持工具链。`Cargo.toml` 的 Release 配置针对最小二进制体积进行了调优：
 
 ```toml
 [profile.release]
@@ -140,11 +143,13 @@ strip = true          # 剥离调试符号
 
 这会生成针对体积优化的二进制文件；实际大小取决于目标平台、Rust 工具链和链接方式，适用性应以对应发布产物的测量结果为准。
 
+CI 会验证原生 Linux、macOS 和 Windows 构建、Windows 交叉目标，以及 Alpine/musl 中的最低 Rust 1.85 工具链。无论 PR 直接基于 `main`，还是堆叠在其他分支上，都会触发这些检查。
+
 ## 添加新 Applet
 
 1. 创建 `src/applets/my_applet.rs`
 2. 实现 `Applet` trait
 3. 在 `src/applets/mod.rs` 中导出
-4. 在 `src/core/dispatcher.rs` 的 `dispatch()`、`applet_names()` 和 `list_applets()` 中注册
+4. 在 `src/core/dispatcher.rs` 的静态 `APPLETS` 注册表中增加一项，并声明 `-h` 是否可用作帮助参数
 
 请参阅各 [Applet 文档](applets/) 获取实现示例。

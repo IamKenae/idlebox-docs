@@ -25,6 +25,8 @@ idlebox --install [路径]
 |------|------|
 | `[路径]` | 可选的目标目录；指定后会覆盖当前平台的默认目录。 |
 
+路径以 `-` 开头时，请在路径前使用 `--`。提供多个目标路径会直接报错，不再静默忽略；`idlebox --install --help` 只显示该命令的帮助，不会执行安装。
+
 ## 行为
 
 - 若目标目录不存在，自动创建。
@@ -49,6 +51,9 @@ idlebox --install
 
 # 安装到自定义目录
 idlebox --install ./bin
+
+# 安装到名称以短横线开头的路径
+idlebox --install -- -tools
 
 # 直接使用已安装的 Applet
 ./bin/echo "hello from a launcher"

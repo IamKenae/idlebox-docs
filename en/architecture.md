@@ -53,7 +53,7 @@ src/
 Every applet implements the `Applet` trait defined in `src/core/applet.rs`:
 
 ```rust
-pub trait Applet {
+pub trait Applet: Sync {
     fn name(&self) -> &'static str;
     fn description(&self) -> &'static str;
     fn run(&self, args: &[String]) -> Result<i32, Box<dyn std::error::Error>>;
@@ -67,10 +67,10 @@ This trait provides a uniform interface for the dispatcher to invoke any applet 
 
 `src/core/dispatcher.rs` contains the `Dispatcher` struct, which:
 
-1. Maintains a registry of all available applets
-2. Routes incoming commands to the correct applet by name
-3. Handles `--help` / `-h` flags uniformly across all applets
-4. Provides the `list_applets()` function for the `list` subcommand
+1. Maintains one static registry used by dispatch, listing, and launcher installation
+2. Routes incoming commands to the correct applet by name without rebuilding a registry per invocation
+3. Handles `--help` and eligible `-h` flags in one argument scan while respecting `--`
+4. Exposes the same registered names to `list`, `--list`, and `--install`
 
 ### Invocation Modes
 
@@ -81,6 +81,7 @@ IdleBox supports two invocation modes:
 ```bash
 idlebox echo "Hello, World!"
 idlebox ls --color=auto -lah
+idlebox help ls
 ```
 
 The binary name is `idlebox`, and the first argument selects the applet.
@@ -111,14 +112,16 @@ main()
   │   ├─ "idlebox" → use argv[1] as applet name
   │   └─ other     → use the launcher filename as applet name
   │
-  ├─ Special case: "list" → print all applets & exit
+  ├─ Special cases: "--help", "--version", and "help [APPLET]"
+  ├─ Special case: "list" / "--list" → print all applets & exit
   ├─ Special case: "--install" → install all applet launchers & exit
   │
   └─ Dispatcher::dispatch(name, args)
       │
-      ├─ Check for --help / -h → print help & exit
+      ├─ Look up the applet in the static registry
+      ├─ Check for --help / eligible -h → print help & exit
       │
-      └─ Match applet name → instantiate & run
+      └─ Run the registered applet
           ├─ "echo"  → EchoApplet
           ├─ "cat"   → CatApplet
           ├─ ...
@@ -127,7 +130,7 @@ main()
 
 ## Build Optimization
 
-The `Cargo.toml` release profile is tuned for minimal binary size:
+The package declares Rust 1.85 as its minimum supported toolchain. The `Cargo.toml` release profile is tuned for minimal binary size:
 
 ```toml
 [profile.release]
@@ -140,11 +143,13 @@ strip = true          # Strip debug symbols
 
 This produces a binary optimized for size. Its actual size depends on the target platform, Rust toolchain, and linking strategy, so suitability should be judged from measurements of each release artifact.
 
+CI validates native Linux, macOS, and Windows builds, a Windows cross-target, and the minimum Rust 1.85 toolchain inside Alpine/musl. Pull requests trigger these checks regardless of whether they are based directly on `main` or stacked on another branch.
+
 ## Adding a New Applet
 
 1. Create `src/applets/my_applet.rs`
 2. Implement the `Applet` trait
 3. Export it in `src/applets/mod.rs`
-4. Register it in `src/core/dispatcher.rs` in `dispatch()`, `applet_names()`, and `list_applets()`
+4. Add one entry to the static `APPLETS` registry in `src/core/dispatcher.rs`, including whether `-h` is available for help
 
 See the individual [applet docs](applets/) for implementation examples.
