@@ -40,7 +40,7 @@ idlebox --install [选项] [路径]
 - 默认拒绝无关的已有文件和链接。预检发现任意冲突时，会一次性报告所有冲突且不修改任何 launcher。
 - 使用 `--force` 可以替换冲突文件或链接，但仍会拒绝并保留目录。
 - 每个待安装或更新的 launcher 都会先在目标旁的临时路径创建，再移动到最终位置。
-- 输出每个 launcher 的操作、实际安装方式（`symbolic link`、`hard link` 或 `copy`）、最终汇总，并在需要时提示配置 `PATH`。
+- 输出每个安装或更新操作、实际安装方式（`symbolic link`、`hard link` 或 `copy`）、包含跳过数量的最终汇总，并在需要时提示配置 `PATH`；dry run 会列出全部计划操作。
 - 支持 Unix-like 系统和 Windows；其他平台会返回“不支持的平台”错误。
 
 ## 示例

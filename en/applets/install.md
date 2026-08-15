@@ -40,7 +40,7 @@ Use `--` before PATH when the path starts with `-`. More than one target path is
 - Rejects unrelated existing files and links by default. If any conflict is found, preflight reports all conflicts and leaves every launcher unchanged.
 - With `--force`, replaces conflicting files and links, but still rejects and preserves directories.
 - Builds each installed or updated launcher at a temporary sibling path before moving it into place.
-- Prints each launcher action, the installation method (`symbolic link`, `hard link`, or `copy`), a final summary, and a `PATH` hint when needed.
+- Prints each install or update action, the installation method (`symbolic link`, `hard link`, or `copy`), a final summary including skipped launchers, and a `PATH` hint when needed. Dry runs list every planned action.
 - Supports Unix-like systems and Windows. Other platforms return an unsupported-platform error.
 
 ## Examples
