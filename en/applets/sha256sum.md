@@ -1,5 +1,6 @@
 # sha256sum
 
+> **Other languages:** [中文](../../zh/applets/sha256sum.md)
 Compute and check SHA256 message digest.
 
 ## Usage

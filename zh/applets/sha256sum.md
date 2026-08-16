@@ -1,5 +1,6 @@
 # sha256sum
 
+> **其他语言：** [English](../../en/applets/sha256sum.md)
 计算和校验 SHA256 消息摘要。
 
 ## 用法

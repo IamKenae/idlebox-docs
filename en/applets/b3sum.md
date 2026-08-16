@@ -1,5 +1,6 @@
 # b3sum
 
+> **Other languages:** [中文](../../zh/applets/b3sum.md)
 Compute and check BLAKE3 message digest (optimized for high speed and parallel hashing on large files).
 
 ## Usage
