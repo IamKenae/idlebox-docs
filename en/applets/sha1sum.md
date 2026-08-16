@@ -1,5 +1,6 @@
 # sha1sum
 
+> **Other languages:** [中文](../../zh/applets/sha1sum.md)
 Compute and check SHA1 message digest.
 
 ## Usage

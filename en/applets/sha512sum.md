@@ -1,5 +1,6 @@
 # sha512sum
 
+> **Other languages:** [中文](../../zh/applets/sha512sum.md)
 Compute and check SHA512 message digest.
 
 ## Usage
